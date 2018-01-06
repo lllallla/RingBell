@@ -2,7 +2,6 @@ package edu.fudan.ringbell.adapter;
 
 import android.content.Context;
 
-
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ public class MusicAdapter extends BaseAdapter {
     private List<MusicInfo> musciList = new ArrayList<>();
 
     public MusicAdapter(Context context, List<MusicInfo> list) {
-        context = context;
+        this.context = context;
         musciList = list;
     }
 
@@ -51,7 +50,7 @@ public class MusicAdapter extends BaseAdapter {
 
         if (convertView == null) {
             holder = new ViewHolder();
-            convertView = LayoutInflater.from(context).inflate(R.layout.music_item, null);
+            convertView = LayoutInflater.from(this.context).inflate(R.layout.music_item, null);
             holder.number = (TextView) convertView.findViewById(R.id.number);
             holder.artistI = (ImageView) convertView.findViewById(R.id.check);
             holder.title = (TextView) convertView.findViewById(R.id.music_title);
