@@ -22,7 +22,7 @@ import edu.fudan.ringbell.media.MediaUtil;
 
 public class MusicByWordFragment extends Fragment {
     private ListView mMusiclist;                   //音乐列表
-    private SimpleAdapter mAdapter;
+    private MusicAdapter mAdapter;
     List<MusicInfo> musicInfos = null;
 
 
@@ -33,17 +33,10 @@ public class MusicByWordFragment extends Fragment {
         mMusiclist = (ListView) view.findViewById(R.id.musiclistbyword);
         //为ListView添加数据源
         musicInfos = MediaUtil.getMusicInfos(getActivity().getApplicationContext());  //获取歌曲对象集合
-        setListAdpter(MediaUtil.getMusicMaps(musicInfos));    //显示歌曲列表
+        mAdapter =  new MusicAdapter(this.getActivity(),musicInfos);
+        mMusiclist.setAdapter(mAdapter);
         return view;
     }
 
-
-    public void setListAdpter(List<HashMap<String, String>> musiclist) {
-        mAdapter = new SimpleAdapter(getActivity(), musiclist,
-                R.layout.music_item, new String[]{"number","title","check_music",
-                "Artist", "music_menu"}, new int[]{R.id.number,R.id.music_title,R.id.check,
-                R.id.music_Artist, R.id.music_menu});
-        mMusiclist.setAdapter(mAdapter);
-    }
 
 }

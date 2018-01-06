@@ -16,7 +16,6 @@
         android:background="#70000000" />
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:orientation="vertical">
@@ -36,7 +35,7 @@
                 android:src="@drawable/lay_goback" />
 
             <TextView
-                android:id="@+id/mrMusicName"
+                android:id="@+id/MusicName"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:ems="15"
@@ -61,14 +60,6 @@
                     android:layout_centerHorizontal="true"
                     android:scaleType="fitCenter"
                     android:src="@drawable/play_disc_halo" />
-
-                <edu.fudan.ringbell.widget.AlbumViewPager
-                    android:id="@+id/view_pager"
-                    android:layout_width="match_parent"
-                    android:layout_height="263dp"
-                    android:layout_marginTop="60dp"
-                    android:layout_centerHorizontal="true"
-                    android:layout_gravity="center_horizontal" />
         </RelativeLayout>
 
         <RelativeLayout
@@ -95,11 +86,11 @@
                 android:text="获取封面和歌词"
                 android:textAlignment="center" />
 
-            <edu.fudan.ringbell.lrc.LrcView
-                android:id="@+id/lrcview"
-                android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:layout_marginTop="10dp" />
+            <!--<edu.fudan.ringbell.lrc.LrcView-->
+                <!--android:id="@+id/lrcview"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="match_parent"-->
+                <!--android:layout_marginTop="10dp" />-->
         </RelativeLayout>
 
         <LinearLayout
