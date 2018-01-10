@@ -4,7 +4,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundstyle">
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -16,13 +17,16 @@
         android:orientation="vertical"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_bias="1.0">
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="251dp"
-            android:orientation="horizontal">
+            android:layout_height="202dp"
+            android:orientation="horizontal"
+            android:background="@drawable/userinformation">
 
             <ImageView
                 android:id="@+id/imageView"
@@ -44,7 +48,10 @@
                     android:layout_weight="0"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="昵称：" />
+                    android:paddingTop="30dp"
+                    android:paddingLeft="3dp"
+                    android:text="昵称：xxxxxx"
+                    android:textSize="20dp" />
 
                 <TextView
                     android:layout_width="match_parent"
@@ -52,46 +59,61 @@
                     android:layout_weight="0"
                     android:ems="10"
                     android:inputType="textPersonName"
-                    android:text="用户名：" />
+                    android:paddingTop="40dp"
+                    android:paddingLeft="3dp"
+                    android:text="用户名：xxxxxxxx"
+                    android:textSize="20dp" />
             </LinearLayout>
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="229dp"
-            android:orientation="vertical">
+            android:layout_height="186dp"
+            android:orientation="vertical"
+            android:paddingTop="30dp">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="界面风格" />
+                android:background="@drawable/itemstyle"
+                android:text="界面风格"
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="软件设置" />
+                android:background="@drawable/itemstyle"
+                android:text="软件设置"
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="铃声商城" />
+                android:background="@drawable/itemstyle"
+                android:text="铃声商城"
+                android:textSize="20dp" />
 
         </LinearLayout>
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="200dp"
+            android:paddingTop="30dp"
             android:orientation="vertical">
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="修改密码" />
+                android:background="@drawable/itemstyle"
+                android:text="修改密码"
+                android:textSize="20dp" />
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
-                android:text="用户登出" />
+                android:background="@drawable/itemstyle"
+                android:text="用户登出"
+                android:textSize="20dp" />
         </LinearLayout>
 
     </LinearLayout>
