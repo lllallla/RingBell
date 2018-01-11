@@ -7,28 +7,31 @@ package edu.fudan.ringbell.media;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.speech.tts.Voice;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
 import java.util.List;
 
 import edu.fudan.ringbell.R;
-import edu.fudan.ringbell.entity.MusicInfo;
+import edu.fudan.ringbell.entity.VoiceInfo;
+import edu.fudan.ringbell.entity.VoiceInfo;
 
-public class MediaUtil {
+public class VoiceUtil {
     /**
      * 用于从数据库中查询歌曲的信息，保存在List当中
      *
      * @return
      */
-    public static List<MusicInfo> getMusicInfos(Context context) {
+    public static List<VoiceInfo> getVoiceInfos(Context context) {
         Cursor cursor = context.getContentResolver().query(
                 MediaStore.Audio.Media.EXTERNAL_CONTENT_URI, null, null, null,
                 MediaStore.Audio.Media.DEFAULT_SORT_ORDER);
-        List<MusicInfo> MusicInfos = new ArrayList<MusicInfo>();
+        List<VoiceInfo> VoiceInfos = new ArrayList<VoiceInfo>();
         for (int i = 0; i < cursor.getCount(); i++) {
             cursor.moveToNext();
-            MusicInfo MusicInfo = new MusicInfo();
+            VoiceInfo VoiceInfo = new VoiceInfo();
             long id = cursor.getLong(cursor
                     .getColumnIndex(MediaStore.Audio.Media._ID));               //音乐id
             String title = cursor.getString((cursor
@@ -41,23 +44,24 @@ public class MediaUtil {
                     .getColumnIndex(MediaStore.Audio.Media.SIZE));              //文件大小
             String url = cursor.getString(cursor
                     .getColumnIndex(MediaStore.Audio.Media.DATA));              //文件路径
-            int isMusic = cursor.getInt(cursor
+            int isVoice = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Media.IS_MUSIC));          //是否为音乐
             long  dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_MODIFIED));
-            if (isMusic != 0) {     //只把音乐添加到集合当中
-                MusicInfo.setId(id);
-                MusicInfo.setTitle(title);
-                MusicInfo.setArtist(artist);
-                MusicInfo.setDuration(duration);
-                MusicInfo.setSize(size);
-                MusicInfo.setUrl(url);
-                MusicInfo.setDateModified(dateModified);
-                MusicInfos.add(MusicInfo);
+            if (isVoice != 0) {     //只把音乐添加到集合当中
+                VoiceInfo.setId(id);
+                VoiceInfo.setTitle(title);
+                VoiceInfo.setArtist(artist);
+                VoiceInfo.setDuration(duration);
+                VoiceInfo.setSize(size);
+                VoiceInfo.setUrl(url);
+                VoiceInfo.setDateModified(dateModified);
+                if(VoiceInfo.getArtist()==null){
+                    VoiceInfos.add(VoiceInfo);
+                }
             }
         }
-        return MusicInfos;
+        return VoiceInfos;
     }
-
 
     /**
      * 格式化时间，将毫秒转换为分:秒格式
