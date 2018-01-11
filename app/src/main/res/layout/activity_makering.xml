@@ -124,7 +124,7 @@
                 android:layout_height="25dp"
                 android:ems="20"
                 android:gravity="center"
-                android:text="铃声时长:xxxs"
+                android:text="铃声时长: 40s"
                 android:textColor="@color/white"
                 android:textSize="15dp" />
 

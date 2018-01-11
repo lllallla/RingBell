@@ -31,9 +31,9 @@ public class MakeRingFragment extends Fragment {
 
         manager = getFragmentManager();
         View view = inflater.inflate(R.layout.fragment_makering, container, false);
-        Button mrBymusic = (Button) view.findViewById(R.id.mrBymusic);
-        Button mrByvoice = (Button) view.findViewById(R.id.mrByvoice);
-        Button mrByrandom = (Button) view.findViewById(R.id.mrByrandom);
+        Button mrBymusic = view.findViewById(R.id.mrBymusic);
+        Button mrByvoice = view.findViewById(R.id.mrByvoice);
+        Button mrByrandom = view.findViewById(R.id.mrByrandom);
 
         mrBymusic.setOnClickListener(new View.OnClickListener() {
             @Override

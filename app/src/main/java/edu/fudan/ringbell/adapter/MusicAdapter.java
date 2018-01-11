@@ -97,8 +97,8 @@ public class MusicAdapter extends BaseAdapter {
         }
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             Intent intent=new Intent(context, PlayMusicActivity.class);
+            intent.putExtra("pos", mPosition);
             context.startActivity(intent);
         }
     }

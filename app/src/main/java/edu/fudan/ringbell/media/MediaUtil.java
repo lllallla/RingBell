@@ -16,6 +16,12 @@ import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
 
 public class MediaUtil {
+
+    private static List<MusicInfo> previousMusicInfos;
+    public static List<MusicInfo> getPreviousMusicInfos() {
+        return previousMusicInfos;
+    }
+
     /**
      * 用于从数据库中查询歌曲的信息，保存在List当中
      *
@@ -53,6 +59,7 @@ public class MediaUtil {
                 MusicInfos.add(MusicInfo);
             }
         }
+        previousMusicInfos = MusicInfos;
         return MusicInfos;
     }
 
