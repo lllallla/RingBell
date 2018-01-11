@@ -58,6 +58,8 @@ public class RecordVoiceActivity extends AppCompatActivity {
         findViewById(R.id.audio_record_start).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.audio_record_stop).setEnabled(true);
+                findViewById(R.id.audio_record_start).setEnabled(false);
                 recorder.init(Environment.getDataDirectory().getPath());
                 recorder.record();
                 recordTime = 0;
@@ -76,6 +78,8 @@ public class RecordVoiceActivity extends AppCompatActivity {
         findViewById(R.id.audio_record_stop).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                findViewById(R.id.audio_record_start).setEnabled(true);
+                findViewById(R.id.audio_record_stop).setEnabled(false);
                 recorder.stop();
                 voiceInfos = VoiceUtil.getVoiceInfos(context);  //获取歌曲对象集合
                 mAdapter =  new VoiceAdapter(context,voiceInfos);
