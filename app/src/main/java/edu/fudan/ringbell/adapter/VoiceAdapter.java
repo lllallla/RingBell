@@ -85,6 +85,7 @@ public class VoiceAdapter extends BaseAdapter {
                                     Intent intent = new Intent(context, MakeRIngActivity.class);
                                     intent.putExtra("path", voiceList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
                                     context.startActivity(intent);
+                                    break;
                             }
                         }
                     });
