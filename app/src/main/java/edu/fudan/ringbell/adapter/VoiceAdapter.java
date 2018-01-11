@@ -2,6 +2,7 @@ package edu.fudan.ringbell.adapter;
 
 import android.app.AlertDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,6 +11,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.util.List;
 import edu.fudan.ringbell.MakeRIngActivity;
@@ -64,9 +66,21 @@ public class VoiceAdapter extends BaseAdapter {
             holder.menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(context).setTitle("确认").setMessage("菜单监视")
-                            .setPositiveButton("是",null)
-                            .setNegativeButton("否",null).show();
+                    AlertDialog.Builder builder = new AlertDialog.Builder(context,android.R.style.Theme_Holo_Light_Dialog);
+                    //builder.setIcon(R.drawable.ic_launcher);
+                    builder.setTitle("选择您的操作");
+                    //    指定下拉列表的显示数据
+                    final String[] cities = {"编辑录音", "铃声设置", "闹钟设置", "录音分享","录音删除"};
+                    //    设置一个下拉的列表选择项
+                    builder.setItems(cities, new DialogInterface.OnClickListener()
+                    {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which)
+                        {
+                            Toast.makeText(context, "选择的操作为：" + cities[which], Toast.LENGTH_SHORT).show();
+                        }
+                    });
+                    builder.show();
                 }
             });
             VoiceListener=new VoiceListener(position);
