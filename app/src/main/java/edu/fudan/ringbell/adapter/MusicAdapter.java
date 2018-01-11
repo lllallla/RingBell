@@ -15,12 +15,15 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.List;
 
 import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.PlayMusicActivity;
 import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
+import edu.fudan.ringbell.fragments.BottomSheetFragment;
+import edu.fudan.ringbell.http.FileRequest;
 
 
 /**
@@ -90,6 +93,12 @@ public class MusicAdapter extends BaseAdapter {
                                     Intent intent = new Intent(context, MakeRIngActivity.class);
                                     intent.putExtra("path", musciList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
                                     context.startActivity(intent);
+                                case 4 :
+                                    int i = FileRequest.upload(new File(musciList.get(Integer.valueOf((String)holder.number.getText()) - 1).getUrl()),holder.title.getText().toString());
+                                    break;
+                                case 5:
+                                    int j = FileRequest.delete(holder.title.getText().toString());
+                                    break;
                             }
                         }
                     });
