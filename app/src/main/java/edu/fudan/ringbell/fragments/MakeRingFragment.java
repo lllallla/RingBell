@@ -16,8 +16,12 @@ import edu.fudan.ringbell.MainActivity;
 import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.RecordVoiceActivity;
+import edu.fudan.ringbell.entity.MusicInfo;
+import edu.fudan.ringbell.media.MediaUtil;
 
 import android.content.Intent;
+
+import java.util.List;
 
 /**
  * Created by niuzhenghao on 2017/11/27.
@@ -55,7 +59,10 @@ public class MakeRingFragment extends Fragment {
         mrByrandom.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intent=new Intent(getActivity(), MakeRIngActivity.class);
+                Intent intent = new Intent(getActivity(), MakeRIngActivity.class);
+                List<MusicInfo> list = MediaUtil.getPreviousMusicInfos();
+                int random = (int)(Math.random() * list.size());
+                intent.putExtra("path", list.get(random).getUrl());
                 startActivity(intent);
             }
         });

@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
@@ -16,7 +17,9 @@ import android.widget.Toast;
 import java.util.List;
 import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.R;
+import edu.fudan.ringbell.entity.MusicInfo;
 import edu.fudan.ringbell.entity.VoiceInfo;
+import edu.fudan.ringbell.media.MediaUtil;
 
 
 /**
@@ -50,7 +53,7 @@ public class VoiceAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         VoiceListener VoiceListener=null;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -77,7 +80,12 @@ public class VoiceAdapter extends BaseAdapter {
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
-                            Toast.makeText(context, "选择的操作为：" + cities[which], Toast.LENGTH_SHORT).show();
+                            switch (which) {
+                                case 0:
+                                    Intent intent = new Intent(context, MakeRIngActivity.class);
+                                    intent.putExtra("path", voiceList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
+                                    context.startActivity(intent);
+                            }
                         }
                     });
                     builder.show();
@@ -95,6 +103,7 @@ public class VoiceAdapter extends BaseAdapter {
         holder.jump.setOnClickListener(VoiceListener);
         return  convertView;
     }
+
     private class VoiceListener implements View.OnClickListener {
         int mPosition;
         public VoiceListener(int inPosition){

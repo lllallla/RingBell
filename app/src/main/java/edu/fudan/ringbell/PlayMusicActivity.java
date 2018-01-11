@@ -1,5 +1,6 @@
 package edu.fudan.ringbell;
 
+import android.content.Context;
 import android.content.Intent;
 import android.graphics.drawable.Drawable;
 import android.media.MediaPlayer;
@@ -34,11 +35,12 @@ public class PlayMusicActivity extends AppCompatActivity {
     private SeekBar seekBar;
     private Timer timer;
     private boolean isSeekBarChanging;//互斥变量，防止进度条与定时器冲突。
-
+    private Context context = null;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_playmusic);
+        context = this;
         ImageView goBack = findViewById(R.id.goback);
         goBack.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -104,6 +106,15 @@ public class PlayMusicActivity extends AppCompatActivity {
                         ((ImageView) v).setImageDrawable(pause);
                     }
                 }
+            }
+        });
+
+        findViewById(R.id.playing_edit).setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(context, MakeRIngActivity.class);
+                intent.putExtra("path", list.get(musicPos).getUrl());
+                startActivity(intent);
             }
         });
 

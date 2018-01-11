@@ -17,6 +17,7 @@ import android.widget.Toast;
 
 import java.util.List;
 
+import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.PlayMusicActivity;
 import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
@@ -53,7 +54,7 @@ public class MusicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         MusicListener MusicListener=null;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -84,7 +85,12 @@ public class MusicAdapter extends BaseAdapter {
                         @Override
                         public void onClick(DialogInterface dialog, int which)
                         {
-                            Toast.makeText(context, "选择的操作为：" + cities[which], Toast.LENGTH_SHORT).show();
+                            switch (which) {
+                                case 1:
+                                    Intent intent = new Intent(context, MakeRIngActivity.class);
+                                    intent.putExtra("path", musciList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
+                                    context.startActivity(intent);
+                            }
                         }
                     });
                     builder.show();

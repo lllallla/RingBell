@@ -21,7 +21,10 @@ public class MediaUtil {
 
     private static List<MusicInfo> previousMusicInfos;
     public static List<MusicInfo> getPreviousMusicInfos() {
-        return previousMusicInfos;
+        if (previousMusicInfos != null)
+            return previousMusicInfos;
+        else
+            return getMusicInfos(null);
     }
 
     /**
