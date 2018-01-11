@@ -15,6 +15,8 @@ import edu.fudan.ringbell.LoginActivity;
 import edu.fudan.ringbell.MainActivity;
 import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.R;
+import edu.fudan.ringbell.RecordVoiceActivity;
+
 import android.content.Intent;
 
 /**
@@ -25,7 +27,7 @@ public class MakeRingFragment extends Fragment {
     private FragmentManager manager;
     private FragmentTransaction ft;
 
-    public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
+    public View onCreateView(LayoutInflater inflater, final ViewGroup container, Bundle savedInstanceState) {
         // inflater.inflate(resource, null);
         super.onCreate(savedInstanceState);
 
@@ -42,6 +44,22 @@ public class MakeRingFragment extends Fragment {
                 startActivity(intent);
             }
         });
+
+        mrByvoice.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), RecordVoiceActivity.class);
+                startActivity(intent);
+            }
+        });
+        mrByrandom.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent=new Intent(getActivity(), MakeRIngActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
         return view;
     }
