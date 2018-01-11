@@ -71,7 +71,7 @@ public class MusicAdapter extends BaseAdapter {
             holder.menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(context).setTitle("确认").setMessage("菜单监视")
+                    new AlertDialog.Builder(context).setTitle("确认").setMessage("是否上传本铃声至云端？")
                             .setPositiveButton("是",null)
                             .setNegativeButton("否",null).show();
                 }
