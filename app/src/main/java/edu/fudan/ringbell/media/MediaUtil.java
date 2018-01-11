@@ -7,6 +7,8 @@ package edu.fudan.ringbell.media;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -50,6 +52,7 @@ public class MediaUtil {
                 MusicInfo.setArtist(artist);
                 MusicInfo.setDuration(duration);
                 MusicInfo.setSize(size);
+                Log.d("test::::::::::::","url:"+url);
                 MusicInfo.setUrl(url);
                 MusicInfo.setDateModified(dateModified);
                 MusicInfos.add(MusicInfo);
