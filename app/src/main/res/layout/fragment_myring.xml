@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/backgroundstyle"
+    android:orientation="vertical">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+        <RadioGroup
+            android:id="@+id/mr_tab"
+            android:layout_width="match_parent"
+            android:layout_height="40dp"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintLeft_toLeftOf="parent"
+            android:background="#fafafa"
+            android:orientation="horizontal">
+
+            <RadioButton
+                android:id="@+id/mr_word"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:button="@null"
+                android:drawableLeft="@drawable/abc_btn_switch_to_on_mtrl_00012r"
+                android:drawablePadding="10dp"
+                android:checked="true"
+                android:text="按字母"
+                android:textColor="@drawable/txtcolor_gray2oran_sel" />
+
+            <RadioButton
+                android:id="@+id/mr_singer"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/abc_btn_switch_to_on_mtrl_00012r"
+                android:drawablePadding="10dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:button="@null"
+                android:text="按歌手"
+                android:textColor="@drawable/txtcolor_gray2oran_sel" />
+
+
+            <RadioButton
+                android:id="@+id/mr_time"
+                android:layout_width="0dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:drawableLeft="@drawable/abc_btn_switch_to_on_mtrl_00012r"
+                android:drawablePadding="10dp"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:button="@null"
+                android:text="按时间"
+                android:textColor="@drawable/txtcolor_gray2oran_sel" />
+
+            <RadioButton
+                android:id="@+id/mr_col"
+                android:layout_width="0dp"
+                android:drawableLeft="@drawable/abc_btn_switch_to_on_mtrl_00012r"
+                android:drawablePadding="10dp"
+                android:layout_height="match_parent"
+                android:layout_gravity="center"
+                android:layout_weight="1"
+                android:background="@color/white"
+                android:button="@null"
+                android:text="按收藏"
+                android:textColor="@drawable/txtcolor_gray2oran_sel" />
+        </RadioGroup>
+
+        <FrameLayout
+            android:id="@+id/id_fragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:paddingTop="40dp"
+            android:background="@drawable/mr_border"
+            app:layout_constraintTop_toBottomOf="@+id/mr_tab" />
+    </LinearLayout>
+
+
+</android.support.constraint.ConstraintLayout>
