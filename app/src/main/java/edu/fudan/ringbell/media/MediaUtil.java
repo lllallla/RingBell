@@ -7,6 +7,8 @@ package edu.fudan.ringbell.media;
 import android.content.Context;
 import android.database.Cursor;
 import android.provider.MediaStore;
+import android.util.Log;
+
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Iterator;
@@ -16,6 +18,15 @@ import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
 
 public class MediaUtil {
+
+    private static List<MusicInfo> previousMusicInfos;
+    public static List<MusicInfo> getPreviousMusicInfos() {
+        if (previousMusicInfos != null)
+            return previousMusicInfos;
+        else
+            return getMusicInfos(null);
+    }
+
     /**
      * 用于从数据库中查询歌曲的信息，保存在List当中
      *
@@ -43,47 +54,23 @@ public class MediaUtil {
                     .getColumnIndex(MediaStore.Audio.Media.DATA));              //文件路径
             int isMusic = cursor.getInt(cursor
                     .getColumnIndex(MediaStore.Audio.Media.IS_MUSIC));          //是否为音乐
+            long  dateModified = cursor.getLong(cursor.getColumnIndexOrThrow(MediaStore.Audio.Media.DATE_MODIFIED));
             if (isMusic != 0) {     //只把音乐添加到集合当中
                 MusicInfo.setId(id);
                 MusicInfo.setTitle(title);
                 MusicInfo.setArtist(artist);
                 MusicInfo.setDuration(duration);
                 MusicInfo.setSize(size);
+                Log.d("test::::::::::::","url:"+url);
                 MusicInfo.setUrl(url);
+                MusicInfo.setDateModified(dateModified);
                 MusicInfos.add(MusicInfo);
             }
         }
+        previousMusicInfos = MusicInfos;
         return MusicInfos;
     }
 
-    /**
-     * 往List集合中添加Map对象数据，每一个Map对象存放一首音乐的所有属性
-     * @param MusicInfos
-     * @return
-     */
-    public static List<HashMap<String, String>> getMusicMaps(
-            List<MusicInfo> MusicInfos) {
-        List<HashMap<String, String>> mp3list = new ArrayList<HashMap<String, String>>();
-        String music_menu = String.valueOf(R.drawable.music_menu);
-        String check_music = String.valueOf(R.drawable.lay_icn_cartist);
-        int i = 0;
-        for (Iterator iterator = MusicInfos.iterator(); iterator.hasNext();) {
-            i++;
-            MusicInfo MusicInfo = (MusicInfo) iterator.next();
-            HashMap<String, String> map = new HashMap<String, String>();
-            map.put("number",String.valueOf(i));
-            map.put("id",String.valueOf(MusicInfo.getId()));
-            map.put("title", MusicInfo.getTitle());
-            map.put("Artist", MusicInfo.getArtist());
-            map.put("duration", formatTime(MusicInfo.getDuration()));
-            map.put("size", String.valueOf(MusicInfo.getSize()));
-            map.put("url", MusicInfo.getUrl());
-            map.put("music_menu",music_menu);
-            map.put("check_music",check_music);
-            mp3list.add(map);
-        }
-        return mp3list;
-    }
 
     /**
      * 格式化时间，将毫秒转换为分:秒格式

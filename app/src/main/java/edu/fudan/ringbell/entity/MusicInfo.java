@@ -7,6 +7,8 @@ public class MusicInfo {
     long duration;
     long size;
     String url;
+    long dateModified;
+
 
     public void setId(long id) {
         this.id = id;
@@ -55,4 +57,11 @@ public class MusicInfo {
     public String getUrl() {
         return url;
     }
+
+    public void setDateModified(long dateModified){this.dateModified = dateModified;}
+
+    public long getDateModified(){return dateModified;}
+
+
+
 }

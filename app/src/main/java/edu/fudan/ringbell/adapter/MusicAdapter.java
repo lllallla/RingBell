@@ -13,6 +13,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.io.File;
 import java.util.List;
@@ -125,8 +126,8 @@ public class MusicAdapter extends BaseAdapter {
         }
         @Override
         public void onClick(View v) {
-            // TODO Auto-generated method stub
             Intent intent=new Intent(context, PlayMusicActivity.class);
+            intent.putExtra("pos", mPosition);
             context.startActivity(intent);
         }
     }

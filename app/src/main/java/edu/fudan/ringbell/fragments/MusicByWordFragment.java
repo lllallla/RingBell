@@ -8,6 +8,8 @@ import android.view.ViewGroup;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
+import java.util.Collections;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.List;
 
@@ -33,6 +35,14 @@ public class MusicByWordFragment extends Fragment {
         mMusiclist = (ListView) view.findViewById(R.id.musiclistbyword);
         //为ListView添加数据源
         musicInfos = MediaUtil.getMusicInfos(getActivity().getApplicationContext());  //获取歌曲对象集合
+        Comparator c = new Comparator<MusicInfo>() {
+            @Override
+            public int compare(MusicInfo m1, MusicInfo m2) {
+                // TODO Auto-generated method stub
+                    return m1.getTitle().compareTo(m2.getTitle());
+            }
+        };
+        Collections.sort(musicInfos,c);
         mAdapter =  new MusicAdapter(this.getActivity(),musicInfos);
         mMusiclist.setAdapter(mAdapter);
         return view;
