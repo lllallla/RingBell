@@ -1,6 +1,6 @@
 package edu.fudan.ringbell.entity;
 
-public class MusicInfo {
+public class VoiceInfo {
     long id;
     String title;
     String artist;
@@ -31,6 +31,7 @@ public class MusicInfo {
     }
 
     public String getArtist() {
+
         return artist;
     }
 

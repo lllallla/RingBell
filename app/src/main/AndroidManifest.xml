@@ -33,6 +33,9 @@ package="edu.fudan.ringbell">
     <activity
         android:name=".PlayMusicActivity"
         android:label="PlayMusic" />
+    <activity
+        android:name=".RecordVoiceActivity"
+        android:label="RecordVoice" />
 </application>
 
 </manifest>
