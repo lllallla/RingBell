@@ -14,11 +14,13 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.File;
 import java.util.List;
 import edu.fudan.ringbell.MakeRIngActivity;
 import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
 import edu.fudan.ringbell.entity.VoiceInfo;
+import edu.fudan.ringbell.http.FileRequest;
 import edu.fudan.ringbell.media.MediaUtil;
 
 
@@ -86,6 +88,13 @@ public class VoiceAdapter extends BaseAdapter {
                                     intent.putExtra("path", voiceList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
                                     context.startActivity(intent);
                                     break;
+                                case 4 :
+                                    int i = FileRequest.upload(new File(voiceList.get(Integer.valueOf((String)holder.number.getText()) - 1).getUrl()),holder.title.getText().toString());
+                                    break;
+                                case 5:
+                                    int j = FileRequest.delete(holder.title.getText().toString());
+                                    break;
+                                    
                             }
                         }
                     });
