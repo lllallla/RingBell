@@ -14,7 +14,7 @@ import java.util.Map;
  */
 
 public class UserRequest {
-    static final HttpUtil util = new HttpUtil();
+    static final HttpUtil util = HttpUtil.getInstance();
     public static int login(String username, String password) {
         Map<String, String> params = new HashMap<>();
         params.put("username", username);

@@ -7,6 +7,7 @@ import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.OutputStream;
@@ -25,6 +26,18 @@ public class HttpUtil {
     private final static int READ_TIME = 10000;
 
     public static String sessionid = null;
+    private static HttpUtil instance = null;
+
+    public static HttpUtil getInstance() {
+        if (instance == null) {
+            instance = new HttpUtil();
+            return instance;
+        } else {
+            return instance;
+        }
+    }
+
+    private HttpUtil() {}
 
     /**
      * 发送post请求
@@ -119,11 +132,11 @@ public class HttpUtil {
         return null;
     }
 
-    public String doFilePost(String urlstr, Map<String, String> map,
+    public String doFilePost(String _url, Map<String, String> map,
                              Map<String, File> files) throws IOException {
         String BOUNDARY = "----WebKitFormBoundaryDwvXSRMl0TBsL6kW"; // 定义数据分隔线
 
-        URL url = new URL(urlstr);
+        URL url = new URL(_url);
         HttpURLConnection connection = (HttpURLConnection) url.openConnection();
         // 发送POST请求必须设置如下两行
         connection.setDoOutput(true);
@@ -132,9 +145,9 @@ public class HttpUtil {
         connection.setRequestMethod("POST");
         connection.setRequestProperty("Accept", "*/*");
         connection.setRequestProperty("connection", "Keep-Alive");
-        connection.setRequestProperty("user-agent", "Android WYJ");
-        connection.setRequestProperty("Charsert", "UTF-8");
+        connection.setRequestProperty("Charset", "UTF-8");
         connection.setRequestProperty("Accept-Encoding", "gzip,deflate");
+        connection.setRequestProperty("Cache-Control","no-cache");
         if (sessionid != null) {
             connection.setRequestProperty("cookie", sessionid);
         }
@@ -156,7 +169,7 @@ public class HttpUtil {
                 sb.append("\r\n");
                 sb.append("Content-Disposition: form-data;name=\"" + fileName
                         + "\";filename=\"" + file.getName() + "\"\r\n");
-                sb.append("Content-Type: image/jpg\r\n\r\n");
+                sb.append("Content-Type: audio/mp3\r\n\r\n");
                 byte[] data = sb.toString().getBytes();
                 out.write(data);
 
@@ -200,6 +213,70 @@ public class HttpUtil {
         }
 
         return null;
+    }
+
+    /**
+     * 从网络Url中下载文件
+     *
+     * @param _url
+     * @param map
+     * @param encoding
+     * @param fileName
+     * @param savePath
+     * @throws IOException
+     */
+    public boolean downLoadFromUrl(String _url, Map<String, String> map, String encoding, String fileName, String savePath) throws IOException {
+        StringBuilder data = new StringBuilder();
+        // 数据拼接 key=value&key=value
+        if (map != null && !map.isEmpty()) {
+            for (Map.Entry<String, String> entry : map.entrySet()) {
+                data.append(entry.getKey()).append("=");
+                data.append(URLEncoder.encode(entry.getValue(), encoding));
+                data.append("&");
+            }
+            data.deleteCharAt(data.length() - 1);
+        }
+
+//        Log.i(TAG, data.toString());
+        byte[] entity = data.toString().getBytes();// 生成实体数据
+        URL url = new URL(_url);
+        HttpURLConnection connection = getHttpURLConnection(_url, "POST");
+
+        connection.setDoOutput(true);// 允许对外输出数据
+
+        connection.setRequestProperty("Content-Length",
+                String.valueOf(entity.length));
+
+        OutputStream outStream = connection.getOutputStream();
+        outStream.write(entity);
+        //防止屏蔽程序抓取而返回403错误
+        connection.setRequestProperty("User-Agent", "Mozilla/4.0 (compatible; MSIE 5.0; Windows NT; DigExt)");
+
+        if(connection.getResponseCode()==HttpURLConnection.HTTP_OK) {
+            //得到输入流
+            InputStream inputStream = connection.getInputStream();
+            //获取自己数组
+            byte[] getData = read(inputStream);
+
+            //文件保存位置
+            File saveDir = new File(savePath);
+            if (!saveDir.exists()) {
+                saveDir.mkdir();
+            }
+            File file = new File(saveDir + File.separator + fileName);
+            FileOutputStream fos = new FileOutputStream(file);
+            fos.write(getData);
+            if (fos != null) {
+                fos.close();
+            }
+            if (inputStream != null) {
+                inputStream.close();
+            }
+            System.out.println("info:" + url + " download success");
+            return true;
+        } else {
+            return false;
+        }
     }
 
     private HttpURLConnection getHttpURLConnection(String _url, String method)

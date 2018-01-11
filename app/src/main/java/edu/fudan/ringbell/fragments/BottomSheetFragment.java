@@ -17,8 +17,10 @@ import edu.fudan.ringbell.R;
  */
 
 public class BottomSheetFragment extends BottomSheetDialogFragment {
-    public static BottomSheetFragment newInstance() {
+    private String filename;
+    public static BottomSheetFragment newInstance(String filename) {
         BottomSheetFragment fragment = new BottomSheetFragment();
+        fragment.filename = filename;
         return fragment;
     }
 
@@ -49,12 +51,27 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
 
         @Override
         public void onBindViewHolder(ViewHolder holder, int position) {
-            holder.textView.setText("item" + (++position));
+            String[] items = {
+                    "播放",
+                    "编辑",
+                    "上传",
+                    "分享",
+                    "删除",
+            };
+            holder.textView.setText(items[++position]);
+//            holder.textView.setOnClickListener(new View.OnClickListener() {
+//                @Override
+//                public void onClick(View v) {
+//                    switch (final position) {
+//
+//                    }
+//                }
+//            });
         }
 
         @Override
         public int getItemCount() {
-            return 20;
+            return 5;
         }
 
         class ViewHolder extends RecyclerView.ViewHolder {
@@ -64,6 +81,7 @@ public class BottomSheetFragment extends BottomSheetDialogFragment {
             public ViewHolder(View itemView) {
                 super(itemView);
                 textView = (TextView) itemView.findViewById(R.id.textview);
+//                textView.setOnClickListener();
             }
         }
     }

@@ -18,6 +18,7 @@ import java.util.List;
 import edu.fudan.ringbell.PlayMusicActivity;
 import edu.fudan.ringbell.R;
 import edu.fudan.ringbell.entity.MusicInfo;
+import edu.fudan.ringbell.fragments.BottomSheetFragment;
 
 
 /**
@@ -51,7 +52,7 @@ public class MusicAdapter extends BaseAdapter {
 
     @Override
     public View getView(int position, View convertView, ViewGroup parent) {
-        ViewHolder holder;
+        final ViewHolder holder;
         MusicListener MusicListener=null;
         if (convertView == null) {
             holder = new ViewHolder();
@@ -71,9 +72,10 @@ public class MusicAdapter extends BaseAdapter {
             holder.menu.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View v) {
-                    new AlertDialog.Builder(context).setTitle("确认").setMessage("是否上传本铃声至云端？")
-                            .setPositiveButton("是",null)
-                            .setNegativeButton("否",null).show();
+//                    BottomSheetFragment fragment = BottomSheetFragment.newInstance(holder.title.getText().toString());
+////                    context.getSupportFragmentManager().
+//                    fragment.show(context.getSupportFragmentManager(),BottomSheetFragment.class.getSimpleName());
+
                 }
             });
             MusicListener=new MusicListener(position);
