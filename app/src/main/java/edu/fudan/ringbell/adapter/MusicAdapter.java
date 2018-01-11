@@ -93,6 +93,7 @@ public class MusicAdapter extends BaseAdapter {
                                     Intent intent = new Intent(context, MakeRIngActivity.class);
                                     intent.putExtra("path", musciList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
                                     context.startActivity(intent);
+                                    break;
                                 case 4 :
                                     int i = FileRequest.upload(new File(musciList.get(Integer.valueOf((String)holder.number.getText()) - 1).getUrl()),holder.title.getText().toString());
                                     break;

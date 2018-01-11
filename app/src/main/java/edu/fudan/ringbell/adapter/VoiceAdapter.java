@@ -87,12 +87,14 @@ public class VoiceAdapter extends BaseAdapter {
                                     Intent intent = new Intent(context, MakeRIngActivity.class);
                                     intent.putExtra("path", voiceList.get(Integer.parseInt((String)holder.number.getText()) - 1).getUrl());
                                     context.startActivity(intent);
+                                    break;
                                 case 4 :
                                     int i = FileRequest.upload(new File(voiceList.get(Integer.valueOf((String)holder.number.getText()) - 1).getUrl()),holder.title.getText().toString());
                                     break;
                                 case 5:
                                     int j = FileRequest.delete(holder.title.getText().toString());
                                     break;
+                                    
                             }
                         }
                     });
